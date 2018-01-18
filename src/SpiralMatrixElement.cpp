@@ -1,4 +1,4 @@
-#include "SpiralMatrixElement.h"
+#include "../include/SpiralMatrixElement.h"
 #include <cmath>
 
 SpiralMatrixElement::SpiralMatrixElement(int number, int xCoordinate, int yCoordinate) : m_number(number), m_xCoordinate(xCoordinate), m_yCoordinate(yCoordinate)

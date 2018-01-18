@@ -1,4 +1,4 @@
-#include "SpiralVector.h"
+#include "../include/SpiralVector.h"
 #include <iostream>
 
 using namespace std;
@@ -71,45 +71,215 @@ vector<SpiralMatrixElement> buildSpiralVectorDay2(int const& inputNumber)
 {
     vector<SpiralMatrixElement> spiral;
     int spiralNumber(1);
+    spiral.push_back(SpiralMatrixElement(1,0,0));
 
-    int number(1);
-    spiral.push_back(SpiralMatrixElement(number,0,0));
-    while(true)
+    int number(0);
+    bool isEnd(false);
+    while(!isEnd)
     {
         for(int j(-spiralNumber+1); j <= spiralNumber; ++j)
         {
+            number = 0;
+            vector<SpiralMatrixElement>::iterator it;
+            for(it = spiral.begin(); it != spiral.end(); ++it)
+            {
+                if((it->getXCoordinate() == spiralNumber-1) && (it->getYCoordinate() == j-1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == spiralNumber-1) && (it->getYCoordinate() == j))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == spiralNumber-1) && (it->getYCoordinate() == j+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == spiralNumber) && (it->getYCoordinate() == j+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == spiralNumber+1) && (it->getYCoordinate() == j+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == spiralNumber+1) && (it->getYCoordinate() == j))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == spiralNumber+1) && (it->getYCoordinate() == j-1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == spiralNumber) && (it->getYCoordinate() == j-1))
+                {
+                    number += it->getNumber();
+                }
+            }
             spiral.push_back(SpiralMatrixElement(number,spiralNumber,j));
 
             if(number > inputNumber)
             {
-                return spiral;
+                isEnd = true;
+                break;
             }
+
         }
+
+        if(isEnd)
+        {
+            break;
+        }
+
         for(int j(spiralNumber-1); j >= -spiralNumber; --j)
         {
+            number = 0;
+            vector<SpiralMatrixElement>::iterator it;
+            for(it = spiral.begin(); it != spiral.end(); ++it)
+            {
+                if((it->getXCoordinate() == j-1) && (it->getYCoordinate() == spiralNumber-1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j-1) && (it->getYCoordinate() == spiralNumber))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j-1) && (it->getYCoordinate() == spiralNumber+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j) && (it->getYCoordinate() == spiralNumber+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j+1) && (it->getYCoordinate() == spiralNumber+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j+1) && (it->getYCoordinate() == spiralNumber))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j+1) && (it->getYCoordinate() == spiralNumber-1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j) && (it->getYCoordinate() == spiralNumber-1))
+                {
+                    number += it->getNumber();
+                }
+            }
             spiral.push_back(SpiralMatrixElement(number,j,spiralNumber));
 
             if(number > inputNumber)
             {
-                return spiral;
+                isEnd = true;
+                break;
             }
         }
+
+        if(isEnd)
+        {
+            break;
+        }
+
         for(int j(spiralNumber-1); j >= -spiralNumber; --j)
         {
+            number = 0;
+            vector<SpiralMatrixElement>::iterator it;
+            for(it = spiral.begin(); it != spiral.end(); ++it)
+            {
+                if((it->getXCoordinate() == -spiralNumber-1) && (it->getYCoordinate() == j-1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == -spiralNumber-1) && (it->getYCoordinate() == j))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == -spiralNumber-1) && (it->getYCoordinate() == j+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == -spiralNumber) && (it->getYCoordinate() == j+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == -spiralNumber+1) && (it->getYCoordinate() == j+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == -spiralNumber+1) && (it->getYCoordinate() == j))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == -spiralNumber+1) && (it->getYCoordinate() == j-1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == -spiralNumber) && (it->getYCoordinate() == j-1))
+                {
+                    number += it->getNumber();
+                }
+            }
             spiral.push_back(SpiralMatrixElement(number,-spiralNumber,j));
-
             if(number > inputNumber)
             {
-                return spiral;
+                isEnd = true;
+                break;
             }
         }
+
+        if(isEnd)
+        {
+            break;
+        }
+
         for(int j(-spiralNumber+1); j <= spiralNumber; ++j)
         {
-            spiral.push_back(SpiralMatrixElement(number,j,-spiralNumber));
-
-            if(number > inputNumber)
+            number = 0;
+            vector<SpiralMatrixElement>::iterator it;
+            for(it = spiral.begin(); it != spiral.end(); ++it)
             {
-                return spiral;
+                if((it->getXCoordinate() == j-1) && (it->getYCoordinate() == -spiralNumber-1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j-1) && (it->getYCoordinate() == -spiralNumber))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j-1) && (it->getYCoordinate() == -spiralNumber+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j) && (it->getYCoordinate() == -spiralNumber+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j+1) && (it->getYCoordinate() == -spiralNumber+1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j+1) && (it->getYCoordinate() == -spiralNumber))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j+1) && (it->getYCoordinate() == -spiralNumber-1))
+                {
+                    number += it->getNumber();
+                }
+                if((it->getXCoordinate() == j) && (it->getYCoordinate() == -spiralNumber-1))
+                {
+                    number += it->getNumber();
+                }
+            }
+            spiral.push_back(SpiralMatrixElement(number,j,-spiralNumber));
+             if(number > inputNumber)
+            {
+                isEnd = true;
+                break;
             }
         }
 
@@ -118,6 +288,7 @@ vector<SpiralMatrixElement> buildSpiralVectorDay2(int const& inputNumber)
 
     return spiral;
 }
+
 
 int spiralMatrixElements(int const& spiralNumber)
 {
